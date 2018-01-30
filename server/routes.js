@@ -4,6 +4,7 @@ const redis = require('../database/redis');
 const passport = require('passport');
 const cookieParser = require('cookie-parser');
 const RedisStore = require('connect-redis')(session);
+const neo4j = require('../database/neo4j');
 
 const router = express.Router();
 router.use(cookieParser());
@@ -40,6 +41,24 @@ router.get('/api/redisUpdateInventory', (req, res) => {
   } catch (err) {
     return res.status(500).json(err.stack);
   }
+});
+
+router.get('/api/neoLoadUsers', (req, res) => {
+  neo4j.loadUsers();
+  return res.status(201);
+});
+
+router.get('/api/neoLoadItems', (req, res) => {
+  neo4j.loadItems();
+  return res.status(201);
+});
+
+router.get('/api/neoCreateRelationships', (req, res) => {
+  neo4j.createRelationships();
+  return res.status(201);
+});
+
+router.get('doAll', (req, res) => {
 });
 
 module.exports = router;
