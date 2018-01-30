@@ -83,7 +83,7 @@ const generateFakeRelationships = (
   return completeRelationshipList;
 };
 
-console.log(generateFakeRelationships(5000, 1000, 5000));
+// console.log(generateFakeRelationships(5000, 1000, 5000));
 
 const createRelationships = () => {
   const relationshipList = generateFakeRelationships(10000, 1000, 5000);
